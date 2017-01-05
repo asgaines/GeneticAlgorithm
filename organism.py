@@ -13,9 +13,9 @@ class Organism():
         else:
             self.DNA = DNA
 
-    def mate(self, partner):
-        # Choose random crossover point
-        crossover_index = random.randint(0, len(self.DNA) - 1)
+    def create_offspring(self, partner):
+        # Determine crossover points
+        crossover_indices = self._get_crossover_indices()
         # Join parents DNA, part from each cut at crossover point
         offspring_DNA = self._splice_DNA(partner, crossover_indices)
         # Expose DNA to mutation possibility
