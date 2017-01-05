@@ -1,5 +1,4 @@
 import random
-from math import floor
 
 from organism import Organism
 
@@ -16,7 +15,7 @@ class Population():
         self.sort_organisms()
 
     def generation(self):
-        self.organisms = self.create_offspring()
+        self.organisms = self.mate()
         self.sort_organisms()
         self.num_generations += 1
 
@@ -26,12 +25,12 @@ class Population():
     def sort_organisms(self):
         self.organisms = sorted(self.organisms, key=lambda organism: organism.get_fitness(self.target), reverse=True)
 
-    def create_offspring(self):
+    def mate(self):
         # Only top half mate, 4 children each
         next_gen = []
-        for i in range(0, floor(self.num_organisms / 2), 2):
+        for i in range(0, int(self.num_organisms / 2), 2):
             for _ in range(4):
-                next_gen.append(self.organisms[i].mate(self.organisms[i + 1]))
+                next_gen.append(self.organisms[i].create_offspring(self.organisms[i + 1]))
         return next_gen[:self.num_organisms]
             
     def get_most_fit(self):
