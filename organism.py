@@ -19,7 +19,7 @@ class Organism():
         # Join parents DNA, part from each cut at crossover point
         offspring_DNA = self._splice_DNA(partner, crossover_indices)
         # Expose DNA to mutation possibility
-        offspring_DNA = ''.join([nucleotide if random.random() > self.mutation_rate else random.choice(self.nucleotides) for nucleotide in offspring_DNA])
+        offspring_DNA = self._mutate_DNA(offspring_DNA)
         return Organism(len(self.DNA), offspring_DNA)
     
     def get_fitness(self, target):
