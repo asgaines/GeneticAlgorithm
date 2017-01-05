@@ -7,4 +7,7 @@ values = {
 
     # Chance of a point mutation when creating a new generation
     'mutation_rate': 0.01,
+
+    # Chance of a crossover event when creating a new generation
+    'crossover_rate': 0.1,
 }
