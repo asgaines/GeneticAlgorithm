@@ -5,6 +5,7 @@ from organism import Organism
 
 class Population():
     organisms = []
+    num_children = 4
 
     def __init__(self, target, num_organisms):
         self.target = target
@@ -26,10 +27,10 @@ class Population():
         self.organisms = sorted(self.organisms, key=lambda organism: organism.get_fitness(self.target), reverse=True)
 
     def mate(self):
-        # Only top half mate, 4 children each
+        # Only fittest half mate
         next_gen = []
-        for i in range(0, int(self.num_organisms / 2), 2):
-            for _ in range(4):
+        for i in range(0, int(self.num_organisms / 2) + 1, 2):
+            for _ in range(self.num_children):
                 next_gen.append(self.organisms[i].create_offspring(self.organisms[i + 1]))
         return next_gen[:self.num_organisms]
             
