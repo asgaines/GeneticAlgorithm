@@ -24,3 +24,6 @@ Average number of generations (10 trials) is 995 in 6.012119 seconds with the fo
 - `mutation_rate: 0.01`
 - `crossover_rate: 0.1`
 
+## Testing
+
+- `python3 -m unittest`
