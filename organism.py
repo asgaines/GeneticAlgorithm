@@ -6,6 +6,7 @@ import config
 class Organism():
     nucleotides = string.printable
     mutation_rate = config.values['mutation_rate']
+    crossover_rate = config.values['crossover_rate']
 
     def __init__(self, target_length, DNA=None):
         if not DNA:
@@ -26,7 +27,7 @@ class Organism():
         return sum([1 for i, character in enumerate(target) if character == self.DNA[i]])
 
     def _get_crossover_indices(self):
-        return [i for i in range(len(self.DNA)) if random.random() < config.values['crossover_rate']]
+        return [i for i in range(len(self.DNA)) if random.random() < self.crossover_rate]
     
     def _splice_DNA(self, partner, indices):
         strand1 = self.DNA
