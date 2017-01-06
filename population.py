@@ -7,12 +7,14 @@ class Population():
     organisms = []
     num_children = 4
 
-    def __init__(self, target, num_organisms):
+    def __init__(self, target, num_organisms, organisms=None):
         self.target = target
         self.num_organisms = num_organisms
         self.num_generations = 0
-        for _ in range(num_organisms):
-            self.organisms.append(Organism(len(self.target)))
+        if organisms is None:
+            self.organisms = [Organism(len(self.target)) for _ in range(num_organisms)]
+        else:
+            self.organisms = organisms
         self.sort_organisms()
 
     def generation(self):
