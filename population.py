@@ -33,5 +33,7 @@ class Population():
                 next_gen.append(self.organisms[i].create_offspring(self.organisms[i + 1]))
         return next_gen[:self.num_organisms]
             
-    def get_most_fit(self):
-        return self.organisms[0].DNA
+    @property
+    def fittest(self):
+        # Organisms must be sorted
+        return self.organisms[0]
