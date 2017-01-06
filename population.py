@@ -23,7 +23,7 @@ class Population():
         self.num_generations += 1
 
     def target_achieved(self):
-        return self.organisms[0].DNA == self.target
+        return self.fittest.DNA == self.target
 
     def sort_organisms(self):
         self.organisms = sorted(self.organisms, key=lambda organism: organism.get_fitness(self.target), reverse=True)
