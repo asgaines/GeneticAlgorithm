@@ -1,14 +1,13 @@
 import random
 import string
 
-import config
-
 class Organism():
     nucleotides = string.printable
-    mutation_rate = config.values['mutation_rate']
-    crossover_rate = config.values['crossover_rate']
 
-    def __init__(self, target_length, DNA=None):
+    def __init__(self, mutation_rate: float, crossover_rate: float, target_length: int, DNA: str=None):
+        self.mutation_rate = mutation_rate
+        self.crossover_rate = crossover_rate
+
         if not DNA:
             self.DNA = ''.join([random.choice(self.nucleotides) for _ in range(target_length)])
         else:
@@ -21,7 +20,8 @@ class Organism():
         offspring_DNA = self._splice_DNA(partner, crossover_indices)
         # Expose DNA to mutation possibility
         offspring_DNA = self._mutate_DNA(offspring_DNA)
-        return Organism(len(self.DNA), offspring_DNA)
+
+        return Organism(self.mutation_rate, self.crossover_rate, len(self.DNA), offspring_DNA)
     
     def get_fitness(self, target):
         return sum([1 for i, character in enumerate(target) if character == self.DNA[i]])
