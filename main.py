@@ -1,6 +1,7 @@
 import argparse
 
 from datetime import datetime
+import matplotlib.pyplot as plt
 
 from organism import Organism
 from population import Population
@@ -23,8 +24,26 @@ if __name__ == '__main__':
         organisms=organisms
     )
 
+    scores = []
+
     while not population.target_achieved():
         population.generation()
+        gen = population.num_generations
+        score = population.fittest.get_fitness(args.target)
+
+        scores.append({
+            'gen': population.num_generations,
+            'score': score,
+        })
+
         # Uncomment the following to see the results in real time
-        print('#{0} (score: {1}): {2}'.format(population.num_generations, population.fittest.get_fitness(args.target), population.fittest.DNA).encode('unicode-escape'))
+        # print('#{0} (score: {1}): {2}'.format(gen, score, population.fittest.DNA).encode('unicode-escape'))
+
     print('{0} generations in {1}'.format(population.num_generations, datetime.now() - start))
+
+    for score in scores:
+        plt.plot(score['gen'], score['score'], 'b,')
+
+    plt.xlabel('generation #')
+    plt.ylabel('score')
+    plt.savefig('./results.png')
