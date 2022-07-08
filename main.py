@@ -37,7 +37,7 @@ if __name__ == '__main__':
         })
 
         # Uncomment the following to see the results in real time
-        # print('#{0} (score: {1}): {2}'.format(gen, score, population.fittest.DNA).encode('unicode-escape'))
+        print('#{0} (score: {1}): {2}'.format(gen, score, population.fittest.DNA).encode('unicode-escape'))
 
     print('{0} generations in {1}'.format(population.num_generations, datetime.now() - start))
 
@@ -46,4 +46,7 @@ if __name__ == '__main__':
 
     plt.xlabel('generation #')
     plt.ylabel('score')
-    plt.savefig('./results.png')
+
+    results_fname = './results.png'
+    plt.savefig(results_fname)
+    print(f'Score curve visualization graph written to {results_fname}')

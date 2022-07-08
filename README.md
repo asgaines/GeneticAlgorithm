@@ -11,13 +11,13 @@ A set number of organisms, with DNA representing a guess at target sequence, are
 - `git clone https://github.com/asgaines/GeneticAlgorithm GeneticAlgorithm`
 - `cd GeneticAlgorithm`
 - `docker build -t genalgo .`
-- `docker run -it --rm --name genalgo_run genalgo`
+- `docker run -it --rm -v $PWD:/usr/src/app --name genalgo_run genalgo`
 
 ### Command Line Usage
 
 Add command line arguments to end of `docker run` command. Example:
 
-`docker run -it --rm --name genalgo_run genalgo -t "GATCAGCATGAC"`
+`docker run -it --rm -v $PWD:/usr/src/app --name genalgo_run genalgo -t "GATCAGCATGAC"`
 
 ```
 usage: main.py [-h] [-t TARGET] [-p NUM_POPULATION] [-m MUTATION_RATE] [-c CROSSOVER_RATE]
@@ -49,4 +49,4 @@ Average number of generations (10 trials) is 995 in 6.012119 seconds with the fo
 
 ## Testing
 
-- `docker run -it --rm --name genalgo_run --entrypoint="python" genalgo -m unittest`
+- `mocker run -it --rm --name genalgo_run --entrypoint="python" genalgo -m unittest`
